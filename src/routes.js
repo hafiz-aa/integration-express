@@ -97,7 +97,8 @@ router.post("/purchaseOrder", ensureValidAccessToken, async (req, res) => {
         "Content-Type": "application/json",
       },
     });
-    res.json(response.data);
+    const purchaseOrderId = response.data.id;
+    res.json({ id: purchaseOrderId });
   } catch (error) {
     if (error.response) {
       console.error("Error creating purchase order:", error.response.data);
