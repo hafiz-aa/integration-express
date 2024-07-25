@@ -175,4 +175,19 @@ router.delete("/purchaseOrder/:id", ensureValidAccessToken, async (req, res) => 
   }
 });
 
+// Get All Invoice
+router.get("/invoice", ensureValidAccessToken, async (req, res) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/invoice`, {
+      headers: {
+        Authorization: `Bearer ${req.accessToken}`,
+      },
+    });
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error retrieving invoice:", error);
+    res.status(500).json({ error: "Failed to retrieve invoice" });
+  }
+});
+
 export default router;
